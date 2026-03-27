@@ -224,7 +224,7 @@ DATABASE_URL="file:./dev.db"
 ### 7. Test backend Build
 Untuk memeriksa apakah koneksi turso backend & build (untuk vercel) berhasil:
 ```bash
-bun run build # jalankan build ke output
+bun run build # jalankan build ke output dist/
 bun start # cek hasil build di dist/index.mjs. periksa path `/users`, dan debug-prisma (jika file ada maka berhasil) 
 ```
 
@@ -237,6 +237,7 @@ error: Cannot find module './generated/prisma/client' from 'C:\repo\ppwl\apps\ba
 Solusinya:
 - hapus folder `apps/backend/node_modules/.prisma` (jika ada)
 - hapus juga file `bun.lock`
+- pastikan tidak ada `import { Prisma } from "@prisma/client"`, ganti path pakai yg `src/generated`
 - jalankan `bun install` di root. lalu ikuti seperti ini:
 ```bash
 >cd apps/backend
